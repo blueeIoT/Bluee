@@ -13,12 +13,12 @@
   <ItemGroup>
     <Text Include="$(MSBuildThisFileDirectory)readme.txt" />
     <Text Include="$(MSBuildThisFileDirectory)library.properties" />
-    <Text Include="$(MSBuildThisFileDirectory)src\Bluee.h">
+    <Text Include="$(MSBuildThisFileDirectory)Bluee.h">
       <Filter>Header Files</Filter>
     </Text>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="$(MSBuildThisFileDirectory)src\Bluee.cpp">
+    <ClCompile Include="$(MSBuildThisFileDirectory)Bluee.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
