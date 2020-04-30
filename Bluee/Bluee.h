@@ -6,7 +6,6 @@
 
 #ifndef _Bluee_h
 #define _Bluee_h
-#endif
 
 //#define DEBUG
 
