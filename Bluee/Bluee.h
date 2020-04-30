@@ -6,7 +6,7 @@
 
 #ifndef _Bluee_h
 #define _Bluee_h
-
+#include "Arduino.h"
 //#define DEBUG
 
 //TAMAÑO DE DATOS
