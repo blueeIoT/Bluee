@@ -257,6 +257,11 @@ void Bluee::clear() {
 	pData.clear();
 }
 
+String Bluee::getDataAsString()
+{
+	return (String )pData.getData();
+}
+
 bool Bluee::send(int timeout) {
 	sendBuffer();
 	if (timeout) {
@@ -412,9 +417,13 @@ void Bluee::removeObject(int pos, DataBuffer& pData) {
 }
 
 bool Bluee::getValue(const char * pParam, DataBuffer & pValue, int pos) {
-	DataBuffer pTemp;
-	if (getObject(pos, pTemp, pData) == OK) {
-		return getValueSplit(pParam, pValue, pTemp) == OK ? true : false;
+	if (pos == 0) {
+		return getValueSplit(pParam, pValue, pData) == OK ? true : false;
+	}	else {
+		DataBuffer pTemp;
+		if (getObject(pos, pTemp, pData) == OK) {
+			return getValueSplit(pParam, pValue, pTemp) == OK ? true : false;
+		}
 	}
 	return false;
 }
@@ -425,6 +434,11 @@ String Bluee::getValueAsString(const char* pParam, int pos) {
 		return pTemp.getString();
 	}
 	return "";
+}
+
+bool Bluee::hasErrorMemory()
+{
+	return pData.hasErrorMemory();
 }
 
 int Bluee::getValueAsInt(const char* pParam, int pos) {
@@ -510,6 +524,7 @@ int Bluee::getValueSplit(const char * pParam, DataBuffer& pResultData, DataBuffe
 							if (falseObjects == 0) {
 								pResultData.addData(&pSourceData.getData()[indexValue], i - indexValue);
 								if (pResultData.hasErrorMemory()) {
+				
 									return ERROR_RESERVING_RAM_MEMORY;
 								}
 								return OK;
@@ -787,6 +802,7 @@ void DataBuffer::clear()
 
 bool DataBuffer::resize(int newSize)
 {
+	char * pTemp = pData;
 	pData = (char*)realloc(pData, newSize + 1);
 	if (pData != NULL) {
 		size = newSize;
@@ -798,6 +814,7 @@ bool DataBuffer::resize(int newSize)
 	Serial.println("ERROR EN MEMORIA");
 #endif 
 
+	free(pTemp);
 	error = true;
 	return false;
 }
@@ -896,7 +913,7 @@ char* DataBuffer::getData()
 
 String DataBuffer::getString()
 {
-	return (String)pData;
+	return (String) pData;
 }
 
 char DataBuffer::get(int position)

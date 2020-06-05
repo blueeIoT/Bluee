@@ -12,6 +12,7 @@
 #else
 	#include "WProgram.h"
 #endif
+
 //#define DEBUG
 
 //TAMAÑO DE DATOS
@@ -143,13 +144,15 @@ public:
     double toDouble(char* pData);
     double getValueAsDouble(const char* pParam, int pos);
     String getValueAsString(const char* pParam, int pos = 0);
+    bool hasErrorMemory();
     DataBuffer & getFunction();
 	DataBuffer & getData();
-    
+    String getDataAsString();
+
 private:
 
-    void sendBuffer();
     void clear();
+    void sendBuffer();
     void addParamSeparator();
     void addObjectSeparator();
     void freeMem(char* pBuffer);
