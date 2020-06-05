@@ -1,7 +1,7 @@
 # Bluee
 Librería para Arduino
 ===========================================
-Descarga la librería y conecta tus proyectos a la nube con bluee. Visita http://wwww.bluee.com.mx para más información
+Descarga la librería y conecta tus proyectos a la nube con bluee. Visita http://wwww.bluee.com.mx para más información.
 
 # Inicialización
 
@@ -54,16 +54,14 @@ Enviar la función a ejecutar:
 ````
 - Regresa **true** si la instrucción fue ejecutada correctamente o un **false** en caso contrario y se puede obtener el **código de error**.
 ``` C++
-     if (bluee.send()) {
-        Serial.println("OK");
-    }   else {
-        Serial.println(bluee.getErrorCode());
-    }
+	if (bluee.send()) {
+		Serial.println("OK");
+	}   else {
+		Serial.println(bluee.getErrorCode());
+	}
 ````
 
 # Leer parámetros de una instrucción
-
-Podemos leer los parámetros de una respuesta:
 
 - Lectura de toda la trama de datos:
 ``` C++
@@ -93,9 +91,9 @@ Nota: **positionOfObject**: posición del objeto para leer sus parámetros.
 
 # Agregar un JSON como valor de un parámetro:
 
-- Utilizando la libreria de ArduinoJson:
+- Utilizando la librería de ArduinoJson:
 ``` C++
-    StaticJsonDocument<200> doc;
+	StaticJsonDocument<200> doc;
 	doc["nameOfValue"] = value
 	String dataJson;  
 	serializeJson(doc, dataJson);
