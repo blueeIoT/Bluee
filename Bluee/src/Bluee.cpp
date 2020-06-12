@@ -345,6 +345,15 @@ void Bluee::addParam(const char* pParam, const char* pValue) {
 	addParam(pParam, &pValue[0], (int) getSizeCharPointer(pValue));
 }
 
+void Bluee::addParam(const char* pParam, double value) {
+	char* pTemp = reserveMem(32);
+	if (pTemp != NULL) {
+		sprintf(pTemp, "%f", value);
+		addParam(pParam, pTemp, getSizeCharPointer(pTemp));
+		freeMem(pTemp);
+	}
+}
+
 void Bluee::addParam(const char* pParam, const char* pValue, int sizeValue) {
 	if (pData.getSize() > 0) {
 		addParamSeparator();
@@ -813,7 +822,7 @@ bool DataBuffer::resize(int newSize)
 #ifdef  DEBUG
 	Serial.println("ERROR EN MEMORIA");
 #endif 
-
+	size = 0;
 	free(pTemp);
 	error = true;
 	return false;

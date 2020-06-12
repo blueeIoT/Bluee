@@ -124,6 +124,7 @@ public:
     void addParam(const char* pParam, DataBuffer& pValue);
     void addParam(const char* pParam, String& sValue);
     void addParam(const char* pParam, const char* pValue);
+    void addParam(const char* pParam, double value);
     void addParam(const char* pParam, const char* pValue, int sizeValue);
     void addDataOnBuffer(DataBuffer& pData);
     void addDataOnBuffer(const char* pData);
