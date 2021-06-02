@@ -117,6 +117,7 @@ public:
     void init(Stream* COM);
     void setFunction(const char * _pFunction);
     void setData(const char* _pData);
+    void setResponse(const char* _pResponse);
     void handle();
     void addParam(const char* pParam, bool bValue);
     void addParam(const char* pParam, int iValue);

@@ -1,0 +1,44 @@
+#######################################
+# Syntax Coloring Map For Bluee
+#######################################
+# Class
+#######################################
+
+Bluee				KEYWORD1
+
+#######################################
+# Methods and Functions
+#######################################	
+
+init				KEYWORD2
+setFunction			KEYWORD2
+setData				KEYWORD2
+setResponse			KEYWORD2
+handle				KEYWORD2
+addParam			KEYWORD2
+addDataOnBuffer		KEYWORD2
+getValue			KEYWORD2
+getValueAsBoolean	KEYWORD2
+send				KEYWORD2
+getErrorCode		KEYWORD2
+toInt				KEYWORD2
+toIntFromHexValue	KEYWORD2
+getValueAsInt		KEYWORD2
+toULong				KEYWORD2
+toLong				KEYWORD2
+getValueAsLong		KEYWORD2
+toDouble			KEYWORD2
+getValueAsDouble	KEYWORD2
+getValueAsString	KEYWORD2
+getValueAsLong		KEYWORD2
+hasErrorMemory		KEYWORD2
+getFunction			KEYWORD2
+getData				KEYWORD2
+getDataAsString		KEYWORD2
+
+#######################################
+# Constants
+#######################################
+
+NONE				LITERAL1
+OK					LITERAL1

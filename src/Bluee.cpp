@@ -202,6 +202,10 @@ bool Bluee::checkDataIncoming() {
 	return false;
 }
 
+void Bluee::setResponse(const char* _pResponse) {
+	setFunction(_pResponse);
+}
+
 void Bluee::setFunction(const char * _pFunction) {
 	pFunction.clear();
 	pFunction.addData(_pFunction);
