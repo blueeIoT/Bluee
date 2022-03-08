@@ -6,9 +6,10 @@
 
 #include "Bluee.h"
 
-void Bluee::init(Stream* COM) {
+void Bluee::init(HardwareSerial * COM, int baudrate) {
+	pinBusy = NONE;
 	comBluee = COM;
-	comBluee->flush();
+	comBluee->begin(baudrate);
 	clear();
 }
 
@@ -17,7 +18,7 @@ bool Bluee::checkReceived(int timeOut) {
 	stepsProtocol = STEP_WAKEUP;
 	while (timeOut-- >= 0){
 		if (checkDataIncoming()) {
-			timeOut = 100;
+			timeOut = 500;
 			inData = comBluee->read();
 			switch (stepsProtocol) {
 				case STEP_WAKEUP:
@@ -28,6 +29,7 @@ bool Bluee::checkReceived(int timeOut) {
 						isWithSize = false;
 						isEndReceiving = false;
 						stepsProtocol++;
+						
 						clear();
 					}
 					break;
@@ -145,7 +147,7 @@ bool Bluee::checkReceived(int timeOut) {
 						if (pFunction.getSize() > 0) {
 							stepsProtocol = STEP_WAKEUP;
 
-	#ifdef DEBUG
+#ifdef DEBUG
 							Serial.println();
 							Serial.println("***function***");
 							Serial.println(pFunction.getSize());
@@ -154,7 +156,18 @@ bool Bluee::checkReceived(int timeOut) {
 							Serial.println(pData.getSize());
 							Serial.println(pData.getData());
 							Serial.println("**************");
-	#endif
+#endif
+
+#ifdef DEBUG_SAMD
+							SerialUSB.println();
+							SerialUSB.println("***function***");
+							SerialUSB.println(pFunction.getSize());
+							SerialUSB.println(pFunction.getData());
+							SerialUSB.println("*****data*****");
+							SerialUSB.println(pData.getSize());
+							SerialUSB.println(pData.getData());
+							SerialUSB.println("**************");
+#endif // DEBUG
 
 							return true;
 						}	else {
@@ -202,14 +215,14 @@ bool Bluee::checkDataIncoming() {
 	return false;
 }
 
-void Bluee::setResponse(const char* _pResponse) {
-	setFunction(_pResponse);
-}
-
 void Bluee::setFunction(const char * _pFunction) {
 	pFunction.clear();
 	pFunction.addData(_pFunction);
 	pData.clear();
+}
+
+void Bluee::setResponse(const char* _pResponse) {
+	setFunction(_pResponse);
 }
 
 void Bluee::setData(const char* _pData) {
@@ -244,6 +257,21 @@ void Bluee::sendBuffer() {
 	Serial.flush();
 #endif // DEBUG
 
+#ifdef DEBUG_SAMD
+	SerialUSB.println();
+	SerialUSB.println("***********SENDING**************");
+	SerialUSB.write(DATA_START_PROTOCOL);
+	SerialUSB.write(DATA_START_INSTRUCTION);
+	for (int i = 0; i < pBuffer.getSize(); i++) {
+		SerialUSB.write(pBuffer.get(i));
+	}
+	SerialUSB.write(DATA_END_INSTRUCTION);
+	SerialUSB.write(DATA_END_PROTOCOL);
+	SerialUSB.println();
+	SerialUSB.println("********************************");
+	SerialUSB.flush();
+#endif // DEBUG
+
 	comBluee->write(DATA_START_PROTOCOL);
 	comBluee->write(DATA_START_INSTRUCTION);
 	for (int i = 0; i < pBuffer.getSize(); i++) {
@@ -255,16 +283,31 @@ void Bluee::sendBuffer() {
 	clear();
 }
 
+void Bluee::emptyBufferRx() {
+	while (comBluee->available()) {
+		comBluee->read();
+	}
+}
+
 void Bluee::clear() {
 	pBuffer.clear();
 	pFunction.clear();
 	pData.clear();
 }
 
+String Bluee::getFunctionAsString() {
+	return (String) pFunction.getData();
+}
+
 String Bluee::getDataAsString()
 {
-	return (String )pData.getData();
+	return (String) pData.getData();
 }
+
+bool Bluee::isFunction(String function) {
+	return getFunctionAsString().equals(function) ? true : false;
+}
+
 
 bool Bluee::send(int timeout) {
 	sendBuffer();
@@ -295,13 +338,24 @@ void Bluee::handle() {
 	}
 }
 
+//Deprecated: Use setApplicationCallback 
 void Bluee::setEventCallback(BlueeEvent pEvent) {
+	setApplicationCallback(pEvent);
+}
+
+//Deprecated: Use setRequestCallback 
+void Bluee::setDataEventCallback(BlueeDataEvent pEvent) {
+	setRequestCallback(pEvent)
+}
+
+void Bluee::setApplicationCallback(BlueeEvent pEvent) {
 	_pEvent = pEvent;
 }
 
-void Bluee::setDataEventCallback(BlueeDataEvent pEvent) {
+void Bluee::setRequestCallback(BlueeDataEvent pEvent) {
 	_pDataEvent = pEvent;
 }
+
 
 void Bluee::addParamSeparator() {
 	addDataOnBuffer(",");
@@ -825,7 +879,8 @@ bool DataBuffer::resize(int newSize)
 
 #ifdef  DEBUG
 	Serial.println("ERROR EN MEMORIA");
-#endif 
+#endif
+
 	size = 0;
 	free(pTemp);
 	error = true;

@@ -62,6 +62,20 @@
 #define DATA_END_PROTOCOL				'*' 
 /*********************************************/
 
+//MAPEO DE PUERTOS - BLUEE32 DEV IOT - ARDUINO ZERO
+/*********************************************/
+#define P1				                A0
+#define P2				                A5
+#define P3				                12
+#define P4				                10
+#define P5				                13
+#define P6				                2
+#define P7				                3
+#define P8				                4
+#define P9				                5
+#define P10				                11
+/*********************************************/
+
 /*****************DATABUFFER******************/
 class DataBuffer {
 
@@ -112,12 +126,15 @@ public:
     typedef void (*BlueeDataEvent)(void);
     void setEventCallback(BlueeEvent pEvent);
     void setDataEventCallback(BlueeDataEvent pEvent);
+    void setApplicationCallback(BlueeEvent pEvent);
+    void setRequestCallback(BlueeDataEvent pEvent);
     /*********************************************/
 
-    void init(Stream* COM);
+    void init(HardwareSerial * COM, int baudrate = 9600);
     void setFunction(const char * _pFunction);
-    void setData(const char* _pData);
     void setResponse(const char* _pResponse);
+    void setData(const char* _pData);
+
     void handle();
     void addParam(const char* pParam, bool bValue);
     void addParam(const char* pParam, int iValue);
@@ -146,15 +163,19 @@ public:
     double toDouble(char* pData);
     double getValueAsDouble(const char* pParam, int pos);
     String getValueAsString(const char* pParam, int pos = 0);
+    void emptyBufferRx();
     bool hasErrorMemory();
     DataBuffer & getFunction();
 	DataBuffer & getData();
     String getDataAsString();
+    String getFunctionAsString();
+    bool isFunction(String function);
 
 private:
 
     void clear();
     void sendBuffer();
+   
     void addParamSeparator();
     void addObjectSeparator();
     void freeMem(char* pBuffer);
@@ -175,10 +196,13 @@ private:
     int errorCode;
     int countRx;
     int sizeRX;
+    int pinBusy;
     bool isWithSize;
 	bool isEndReceiving;
+    int timeOutRx;
 	
-    Stream* comBluee; 
+    //Stream * comBluee; 
+    HardwareSerial* comBluee;
     DataBuffer pBuffer;
 	DataBuffer pFunction;
 	DataBuffer pData;

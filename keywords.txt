@@ -12,6 +12,7 @@ Bluee				KEYWORD1
 
 init				KEYWORD2
 setFunction			KEYWORD2
+isFunction			KEYWORD2
 setData				KEYWORD2
 setResponse			KEYWORD2
 handle				KEYWORD2
@@ -35,6 +36,11 @@ hasErrorMemory		KEYWORD2
 getFunction			KEYWORD2
 getData				KEYWORD2
 getDataAsString		KEYWORD2
+getFunctionAsString	KEYWORD2
+setEventCallback		KEYWORD2
+setDataEventCallback	KEYWORD2
+setRequestCallback		KEYWORD2
+setApplicationCallback	KEYWORD2
 
 #######################################
 # Constants
@@ -42,3 +48,16 @@ getDataAsString		KEYWORD2
 
 NONE				LITERAL1
 OK					LITERAL1
+P1					LITERAL1
+P2					LITERAL1
+P3					LITERAL1
+P4					LITERAL1
+P5					LITERAL1
+P6					LITERAL1
+P7					LITERAL1
+P8					LITERAL1
+P9					LITERAL1
+P10					LITERAL1
+
+		
+
