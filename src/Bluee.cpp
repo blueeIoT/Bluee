@@ -6,10 +6,9 @@
 
 #include "Bluee.h"
 
-void Bluee::init(HardwareSerial * COM, int baudrate) {
+void Bluee::init(Stream * COM) {
 	pinBusy = NONE;
 	comBluee = COM;
-	comBluee->begin(baudrate);
 	clear();
 }
 
@@ -345,7 +344,7 @@ void Bluee::setEventCallback(BlueeEvent pEvent) {
 
 //Deprecated: Use setRequestCallback 
 void Bluee::setDataEventCallback(BlueeDataEvent pEvent) {
-	setRequestCallback(pEvent)
+	setRequestCallback(pEvent);
 }
 
 void Bluee::setApplicationCallback(BlueeEvent pEvent) {

@@ -14,12 +14,11 @@ Antes de iniciar, declara un objeto de tipo **Bluee** como variable global:
 ``` C++
     Bluee bluee;
 ````
-Asigna el puerto de comunicación serial para comunicarse con el dispositivo blueeBridge y la velocidad de comunicación dentro de la función **setup()**.
+Asigna el puerto de comunicación serial para comunicarse con el dispositivo blueeBridge dentro de la función **setup()**. *Debes iniciar la comunicación serial con anterioridad*.
 ``` C++
     bluee.init(&Serial); 
-    bluee.init(&Serial,115200);
 ````
-Si no se define la velocidad de comunicación, se inicializa a *9600 baudios* por default.
+Debes validar la velocidad de comunicación a la que está configurado el blueeBridge. La velocidad de comunicación es de *9600 baudios* por default.
 
 - Puedes utilizar los hardware Serial1, Serial2.. (Arduino Mega o Zero) o SoftwareSerial (serial por software en Arduino Uno o Nano).
 

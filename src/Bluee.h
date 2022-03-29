@@ -130,7 +130,7 @@ public:
     void setRequestCallback(BlueeDataEvent pEvent);
     /*********************************************/
 
-    void init(HardwareSerial * COM, int baudrate = 9600);
+    void init(Stream * COM);
     void setFunction(const char * _pFunction);
     void setResponse(const char* _pResponse);
     void setData(const char* _pData);
@@ -201,8 +201,7 @@ private:
 	bool isEndReceiving;
     int timeOutRx;
 	
-    //Stream * comBluee; 
-    HardwareSerial* comBluee;
+    Stream * comBluee; 
     DataBuffer pBuffer;
 	DataBuffer pFunction;
 	DataBuffer pData;
