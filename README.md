@@ -16,7 +16,8 @@ Antes de iniciar, declara un objeto de tipo **Bluee** como variable global:
 ````
 Asigna el puerto de comunicación serial para comunicarse con el dispositivo blueeBridge dentro de la función **setup()**. *Debes iniciar la comunicación serial con anterioridad*.
 ``` C++
-    bluee.init(&Serial); 
+	serial.begin(9600);
+    bluee.init(&serial); 
 ````
 Debes validar la velocidad de comunicación a la que está configurado el blueeBridge. La velocidad de comunicación es de *9600 baudios* por default.
 
@@ -171,7 +172,8 @@ Agregar JSON como parámetro:
 - Utiliza el **Serial1** para comunicarte con Bluee32.
 
 ``` C++
-    bluee.init(&Serial1,115200);
+	Serial1.begin(9600);
+    bluee.init(&Serial1);
 ```
 
 - Utiliza el mapeo de pines: **P1, P2, P3, P4, P5, P6, P7, P8, P9 y P10** para controlar los pines de entrada y salida de la tarjeta *Bluee32 IoT Dev*.
