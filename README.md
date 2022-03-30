@@ -16,7 +16,7 @@ Antes de iniciar, declara un objeto de tipo **Bluee** como variable global:
 ````
 Asigna el puerto de comunicación serial para comunicarse con el dispositivo blueeBridge dentro de la función **setup()**. *Debes iniciar la comunicación serial con anterioridad*.
 ``` C++
-	serial.begin(9600);
+    serial.begin(9600);
     bluee.init(&serial); 
 ````
 Debes validar la velocidad de comunicación a la que está configurado el blueeBridge. La velocidad de comunicación es de *9600 baudios* por default.
@@ -36,8 +36,8 @@ Debes declarar las funciones de los eventos para recibir los datos:
 - Función que se dispara al obtener datos de las peticiones realizadas al servidor web.
 ``` C++
     void eventRequestDataBluee() {
-    bluee.getFunction();
-    bluee.getData();
+		bluee.getFunction();
+		bluee.getData();
     }
 ````
 - Función que se dispara al recibir datos de las diversas aplicaciones que se estén ejecutando en el dispositivo blueeBridge como eventos de conexión wifi, datos del servidor/cliente websocket,  pubnub, mqtt, entre otros. Indica el código de evento de la aplicación que se ha disparado.
@@ -172,7 +172,7 @@ Agregar JSON como parámetro:
 - Utiliza el **Serial1** para comunicarte con Bluee32.
 
 ``` C++
-	Serial1.begin(9600);
+    Serial1.begin(9600);
     bluee.init(&Serial1);
 ```
 
