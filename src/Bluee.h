@@ -64,16 +64,25 @@
 
 //MAPEO DE PUERTOS - BLUEE32 DEV IOT - ARDUINO ZERO
 /*********************************************/
+//PINES IO
 #define P1				                A0
 #define P2				                A5
 #define P3				                12
 #define P4				                10
 #define P5				                13
-#define P6				                2
+#define P6				                4
 #define P7				                3
-#define P8				                4
+#define P8				                2
 #define P9				                5
 #define P10				                11
+//SPI
+#define SS				                A3
+#define MI			                    22
+#define M0			                    23
+#define CK			                    24
+//I2C
+#define SDA                             20
+#define SCL                             21
 /*********************************************/
 
 /*****************DATABUFFER******************/
