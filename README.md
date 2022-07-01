@@ -188,7 +188,7 @@ Agregar JSON como parámetro:
 
 Revisa la [documentación] de tu dispositivo blueeBridge para más información.
  
-  [documentación]: <https://bluee.com.mx/pages/ecosistema/documentacion>
+[documentación]: <https://bluee.com.mx/pages/ecosistema/documentacion>
   
 [ArduinoJson]: <https://arduinojson.org/>
 
