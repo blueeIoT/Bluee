@@ -6,7 +6,7 @@ Descarga la librería y conecta tus proyectos a diversas plataformas en la nube 
 
 Visita http://wwww.bluee.com.mx para más información.
 
-- Librería para los *blueeBridge*: **Bluee IoT, Bluee32 IoT y Bluee32 IoT Dev**.
+- Librería para los *blueeBridge*: **Bluee IoT, Bluee32 IoT y Bluee32S3 IoT Dev**.
 
 # Inicialización
 
@@ -176,7 +176,7 @@ Agregar JSON como parámetro:
     bluee.init(&Serial1);
 ```
 
-- Utiliza el mapeo de pines: **P1, P2, P3, P4, P5, P6, P7, P8, P9 y P10** para controlar los pines de entrada y salida de la tarjeta *Bluee32 IoT Dev*.
+- Utiliza el mapeo de pines: **P1, P2, P3, P4, P5, P6, P7, P8, P9 y P10** para controlar los pines de entrada y salida de la tarjeta *Bluee32S3 IoT Dev*.
 
 ``` C++
     pinMode(P1,OUTPUT);

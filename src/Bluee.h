@@ -37,7 +37,7 @@
 
 //MAQUINA DE ESTADOS DEL PROTOCOLO
 /*********************************************/
-#define STEP_WAKEUP						0
+#define STEP_WAKEUP                     0
 #define STEP_START_INSTRUCTION			1
 #define STEP_START_FUNCTION				2
 #define STEP_GET_SIZE					3
@@ -62,27 +62,31 @@
 #define DATA_END_PROTOCOL				'*' 
 /*********************************************/
 
-//MAPEO DE PUERTOS - BLUEE32 DEV IOT - ARDUINO ZERO
+//MAPEO DE PUERTOS - BLUEE32S3 DEV IOT - ARDUINO ZERO
 /*********************************************/
 //PINES IO
-#define P1				                A0
-#define P2				                A5
-#define P3				                12
-#define P4				                10
-#define P5				                13
-#define P6				                4
-#define P7				                3
-#define P8				                2
-#define P9				                5
-#define P10				                11
+#define P1				                19  //I/O, ADC
+#define P2				                25  //I/O, ADC
+#define P3				                14  //I/O, ADC, PWM, DAC
+#define P4				                15  //I/O, ADC, PWM
+#define P5				                16  //I/O, ADC
+#define P6				                17  //I/O, ADC
+#define P7				                34  //I/O, PWM
+#define P8				                36  //I/O, PWM
+#define P9				                37  //I/O, PWM
+#define P10				                11  //I/O, PWM
 //SPI
-#define SS				                A3
+#define SS				                4
 #define MI			                    22
-#define M0			                    23
+#define MO			                    23
 #define CK			                    24
 //I2C
 #define SDA                             20
 #define SCL                             21
+
+//INTERFAZ BLUEE32s3
+#define RST                             3
+#define BSY                             9
 /*********************************************/
 
 /*****************DATABUFFER******************/

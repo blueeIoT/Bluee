@@ -28,7 +28,6 @@ bool Bluee::checkReceived(int timeOut) {
 						isWithSize = false;
 						isEndReceiving = false;
 						stepsProtocol++;
-						
 						clear();
 					}
 					break;
@@ -354,7 +353,6 @@ void Bluee::setApplicationCallback(BlueeEvent pEvent) {
 void Bluee::setRequestCallback(BlueeDataEvent pEvent) {
 	_pDataEvent = pEvent;
 }
-
 
 void Bluee::addParamSeparator() {
 	addDataOnBuffer(",");
@@ -849,7 +847,6 @@ DataBuffer::DataBuffer(const char* pSource)
 	init();
 	addData(pSource);
 }
-
 
 void DataBuffer::init()
 {
